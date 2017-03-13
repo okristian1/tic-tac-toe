@@ -7,13 +7,13 @@ for(var i = 0; i < len; ++i) {
     var tileVal = this.innerHTML;
     if(tileVal === '') {
       this.innerHTML = player;
+      checkWin(player);
       player = player === 'X' ? 'O' : 'X';
-      checkWin();
     }
   }
 }
 
-var winningCombinations = [
+var winCom = [
   [0,1,2], //first row
   [3,4,5], // second row
   [6,7,8], // third row
@@ -24,14 +24,12 @@ var winningCombinations = [
   [2,4,6], // right to left diagonal
 ]
 
-function checkWin() {
-  var len = winningCombinations.length;
-  for (i = 0; i < len; ++i) {
-    if(tiles)
+function checkWin(player) {
+  var len = winCom.length;
+  for (var i = 0; i < len; i++) {
+    if(tiles.innerHTML[winCom[i]]
+    }
   }
-}
-
-
 
 /* game logics
 Chose number of players
