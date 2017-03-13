@@ -52,3 +52,9 @@ body {
 	/* Smoothing out hover and active states using css3 transitions */
 	transition: all 0.2s ease;
 }
+
+.board span:hover {
+	background: #9c89f6;
+	box-shadow: 0px 4px #6b54d3;
+	color: white;
+}
