@@ -25,11 +25,24 @@ var winCom = [
 ]
 
 function checkWin(player) {
-  var len = winCom.length;
-  for (var i = 0; i < len; i++) {
-    if(tiles.innerHTML[winCom[i]]
+  var counter = 0;
+  for (var i = 0; i < winCom.length; i++) {
+    for (var j = 0; j < winCom[i].length; j++) {
+//      console.log(player);
+      console.log(winCom[i][j]);
+//      console.log(tiles[i].innerHTML);
+      if(tiles[i].innerHTML === player) {
+        counter ++;
+      }
+      if (counter > 2) {
+        console.log("damn son");
+      }
+    }
+//    console.log(winCom[i]);
+      console.log(tiles[i].innerHTML);
     }
   }
+
 
 /* game logics
 Chose number of players
