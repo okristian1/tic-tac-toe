@@ -1,6 +1,8 @@
 var player = 'X';
 var tiles = document.querySelectorAll('.board span');
 var len = tiles.length;
+var turn = 0;
+
 
 for(var i = 0; i < len; ++i) {
   tiles[i].onclick = function(e) {
@@ -34,13 +36,20 @@ function checkWin(player) {
       counter++;
 //      console.log(counter);
     }
-      if (counter>2) {
+      if (counter > 2) {
         alert(player + " wins");
         console.log("winrar");
+        break;
       }
     }
     counter = 0;
   }
+  turn ++;
+  console.log(turn);
+  if(turn > 8) {
+        alert("tie");
+      }
+
 }
 
 /* game logics
