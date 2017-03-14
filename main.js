@@ -27,22 +27,21 @@ var winCom = [
 function checkWin(player) {
   var counter = 0;
   for (var i = 0; i < winCom.length; i++) {
-    for (var j = 0; j < winCom[i].length; j++) {
-//      console.log(player);
-      console.log(winCom[i][j]);
-//      console.log(tiles[i].innerHTML);
-      if(tiles[i].innerHTML === player) {
-        counter ++;
-      }
-      if (counter > 2) {
-        console.log("damn son");
+    for(var j = 0; j < 3; j++) {
+//      console.log(tiles[winCom[i][j]].innerHTML);
+      if(tiles[winCom[i][j]].innerHTML === player) {
+//      console.log("matches player");
+      counter++;
+//      console.log(counter);
+    }
+      if (counter>2) {
+        alert(player + " wins");
+        console.log("winrar");
       }
     }
-//    console.log(winCom[i]);
-      console.log(tiles[i].innerHTML);
-    }
+    counter = 0;
   }
-
+}
 
 /* game logics
 Chose number of players
