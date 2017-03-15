@@ -2,6 +2,7 @@ var player = 'X';
 var tiles = document.querySelectorAll('.board span');
 var len = tiles.length;
 var turn = 0;
+var win = false;
 
 
 for(var i = 0; i < len; ++i) {
@@ -26,6 +27,14 @@ var winCom = [
   [2,4,6], // right to left diagonal
 ]
 
+function resetGame() {
+  for (var i = 0; i < len; i++) {
+    tiles[i].innerHTML = '';
+  }
+  turn = 0;
+}
+
+
 function checkWin(player) {
   var counter = 0;
   for (var i = 0; i < winCom.length; i++) {
@@ -38,16 +47,16 @@ function checkWin(player) {
     }
       if (counter > 2) {
         alert(player + " wins");
-        console.log("winrar");
-        break;
+        win = true;
+        resetGame();
       }
     }
     counter = 0;
   }
   turn ++;
-  console.log(turn);
-  if(turn > 8) {
+  if(turn > 8 && !win) {
         alert("tie");
+        resetGame();
       }
 
 }
@@ -64,3 +73,25 @@ active player. repeat.
 
 
 */
+// Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+var startBtn = document.querySelector(".start-button");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal
+window.onload = function() {
+    modal.style.display = "block";
+}
+
+// When the user clicks on <span> (x), close the modal
+
+startBtn.onclick = function() {
+  alert("game start");
+  modal.style.display = "none";
+  return false;
+}

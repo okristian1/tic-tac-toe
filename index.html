@@ -19,6 +19,30 @@
         <span></span>
       </div>
 
+      <!-- Trigger/Open The Modal -->
+      <button id="myBtn">Open Modal</button>
+
+      <!-- The Modal -->
+      <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <form method="post">
+                  <fieldset>
+                          <legend>Game type</legend>
+                                  <input type="radio" name="1player" value="computer" />Play against computer<br />
+                                  <input type="radio" name="2player" value="2player" />Play against a friend<br />
+<hr />
+                          <legend>Choose X or Y</legend>
+                                  <input type="radio" name="playerX" value="X" />X<br />
+                                  <input type="radio" name="playerO" value="O" />O<br />
+                                  <input type="submit" class="start-button" value="Start Game" />
+                  </fieldset>
+          </form>        </div>
+
+      </div>
+
 
 <script src="main.js"></script>
   </body>
