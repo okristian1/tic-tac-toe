@@ -34,7 +34,6 @@ function resetGame() {
   turn = 0;
 }
 
-
 function checkWin(player) {
   var counter = 0;
   for (var i = 0; i < winCom.length; i++) {
@@ -58,7 +57,6 @@ function checkWin(player) {
         alert("tie");
         resetGame();
       }
-
 }
 
 /* game logics
