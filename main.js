@@ -5,6 +5,7 @@ var turn = 0;
 var win = false;
 
 
+
 for(var i = 0; i < len; ++i) {
   tiles[i].onclick = function(e) {
     var tileVal = this.innerHTML;
@@ -89,7 +90,18 @@ window.onload = function() {
 // When the user clicks on <span> (x), close the modal
 
 startBtn.onclick = function() {
-  alert("game start");
   modal.style.display = "none";
   return false;
+}
+
+var Xselect = document.querySelector('#Xselect');
+var Oselect = document.querySelector('#Oselect');
+
+Xselect.onclick = function() {
+  player = Xselect.innerHTML;
+}
+
+
+Oselect.onclick = function() {
+  player = Oselect.innerHTML;
 }
