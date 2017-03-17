@@ -21,8 +21,8 @@ for(var i = 0; i < len; ++i) {
   tiles[i].onclick = function(e) {
     var tileVal = this.innerHTML;
     if(tileVal === '') {
-      player = player === 'X' ? 'O' : 'X';
       this.innerHTML = player;
+      player = player === 'X' ? 'O' : 'X';
       checkWin(player);
       if(gameMode==='playerVersusComputer') {
         computerTurn();
@@ -102,9 +102,14 @@ window.onload = function() {
 // When the user clicks on <span> (x), close the modal
 
 startBtn.onclick = function() {
-  modal.style.display = "none";
-  return false;
+  if (gameMode !== '' && player !== '') {
+    modal.style.display = "none";
+    return false;
+  } else {
+    alert("chose");
+  }
 }
+
 
 resetBtn.onclick = function() {
   modal.style.display = "block";
@@ -121,16 +126,26 @@ var pve = document.querySelector('#pve');
 
 pvp.onclick = function() {
   gameMode = 'playerVersusPlayer';
+  pvp.className = 'active-btn';
+  pve.className = 'modal-btn';
 }
 
 pve.onclick = function() {
   gameMode = 'playerVersusComputer';
+  pve.className = 'active-btn';
+  pvp.className = 'modal-btn';
 }
 
 Xselect.onclick = function() {
   player = 'X';
+  Xselect.className = 'active-btn';
+  Oselect.className = 'modal-btn';
+
 }
 
 Oselect.onclick = function() {
   player = 'O';
+  Oselect.className = 'active-btn';
+  Xselect.className = 'modal-btn';
+
 }
