@@ -3,11 +3,22 @@ var tiles = document.querySelectorAll('.board span');
 var len = tiles.length;
 var turn = 0;
 var win = false;
+var gameMode = 'playerVersusComputer'
 
+function computerTurn() {
+  var freeTiles = [];
+  for(var i = 0; i < len; ++i) {
+    if(tiles[i].innerHTML === '') {
+      freeTiles.push(i);
+    }
+  }
+  console.log(freeTiles);
+}
 
 
 for(var i = 0; i < len; ++i) {
   tiles[i].onclick = function(e) {
+    computerTurn();
     var tileVal = this.innerHTML;
     if(tileVal === '') {
       this.innerHTML = player;
@@ -100,7 +111,6 @@ var Oselect = document.querySelector('#Oselect');
 Xselect.onclick = function() {
   player = Xselect.innerHTML;
 }
-
 
 Oselect.onclick = function() {
   player = Oselect.innerHTML;
