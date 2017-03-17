@@ -1,32 +1,9 @@
-var player = 'X';
-var tiles = document.querySelectorAll('.board span');
-var len = tiles.length;
+var player = '';
+var gameMode = ''
 var turn = 0;
 var win = false;
-var gameMode = 'playerVersusComputer'
-
-function computerTurn() {
-  var freeTiles = [];
-  for(var i = 0; i < len; ++i) {
-    if(tiles[i].innerHTML === '') {
-      freeTiles.push(i);
-    }
-  }
-  console.log(freeTiles);
-}
-
-
-for(var i = 0; i < len; ++i) {
-  tiles[i].onclick = function(e) {
-    computerTurn();
-    var tileVal = this.innerHTML;
-    if(tileVal === '') {
-      this.innerHTML = player;
-      checkWin(player);
-      player = player === 'X' ? 'O' : 'X';
-    }
-  }
-}
+var tiles = document.querySelectorAll('.board span');
+var len = tiles.length;
 
 var winCom = [
   [0,1,2], //first row
@@ -38,6 +15,38 @@ var winCom = [
   [0,4,8], // left to right diagonal
   [2,4,6], // right to left diagonal
 ]
+
+
+for(var i = 0; i < len; ++i) {
+  tiles[i].onclick = function(e) {
+    var tileVal = this.innerHTML;
+    if(tileVal === '') {
+      player = player === 'X' ? 'O' : 'X';
+      this.innerHTML = player;
+      checkWin(player);
+      if(gameMode==='playerVersusComputer') {
+        computerTurn();
+      }
+    }
+  }
+}
+
+
+function computerTurn() {
+  player = player === 'X' ? 'O' : 'X';
+  var freeTiles = [];
+  for(var i = 0; i < len; ++i) {
+    if(tiles[i].innerHTML === '') {
+      freeTiles.push(i);
+    }
+  }
+  var random = freeTiles[Math.floor(Math.random()*freeTiles.length)]
+  tiles[random].innerHTML = player;
+  checkWin(player);
+  freeTiles = [];
+}
+
+
 
 function resetGame() {
   for (var i = 0; i < len; i++) {
@@ -71,24 +80,16 @@ function checkWin(player) {
       }
 }
 
-/* game logics
-Chose number of players
-Choose X or O
-Random X or O begins
-When tile is clicked set tile to current player
-X or O
-Unless tile already ocupied
-Check win condition and declare winner or change
-active player. repeat.
 
 
-*/
-// Get the modal
+
+// MODAL and buttons and STUFF
 var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
 var btn = document.getElementById("myBtn");
 var startBtn = document.querySelector(".start-button");
+var resetBtn = document.querySelector('#reset-btn');
 
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
@@ -105,13 +106,31 @@ startBtn.onclick = function() {
   return false;
 }
 
+resetBtn.onclick = function() {
+  modal.style.display = "block";
+  resetGame();
+}
+
+
+
 var Xselect = document.querySelector('#Xselect');
 var Oselect = document.querySelector('#Oselect');
 
+var pvp = document.querySelector('#pvp');
+var pve = document.querySelector('#pve');
+
+pvp.onclick = function() {
+  gameMode = 'playerVersusPlayer';
+}
+
+pve.onclick = function() {
+  gameMode = 'playerVersusComputer';
+}
+
 Xselect.onclick = function() {
-  player = Xselect.innerHTML;
+  player = 'X';
 }
 
 Oselect.onclick = function() {
-  player = Oselect.innerHTML;
+  player = 'O';
 }
