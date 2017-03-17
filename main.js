@@ -22,26 +22,28 @@ for(var i = 0; i < len; ++i) {
     var tileVal = this.innerHTML;
     if(tileVal === '') {
       this.innerHTML = player;
-      player = player === 'X' ? 'O' : 'X';
       checkWin(player);
+      player = player === 'X' ? 'O' : 'X';
       if(gameMode==='playerVersusComputer') {
         computerTurn();
+        player = player === 'X' ? 'O' : 'X';
       }
     }
   }
 }
 
-
 function computerTurn() {
-  player = player === 'X' ? 'O' : 'X';
   var freeTiles = [];
   for(var i = 0; i < len; ++i) {
     if(tiles[i].innerHTML === '') {
       freeTiles.push(i);
+      checkWin(player);
     }
   }
   var random = freeTiles[Math.floor(Math.random()*freeTiles.length)]
-  tiles[random].innerHTML = player;
+  if (freeTiles !== []) {
+    tiles[random].innerHTML = player;    
+  }
   checkWin(player);
   freeTiles = [];
 }
@@ -73,7 +75,6 @@ function checkWin(player) {
     }
     counter = 0;
   }
-  turn ++;
   if(turn > 8 && !win) {
         alert("tie");
         resetGame();
