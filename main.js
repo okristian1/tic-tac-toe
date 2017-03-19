@@ -22,7 +22,9 @@ for(var i = 0; i < len; ++i) {
     var tileVal = this.innerHTML;
     if(tileVal === '') {
       this.innerHTML = player;
+      turn++;
       checkWin(player);
+      console.log(turn);
       player = player === 'X' ? 'O' : 'X';
       if(gameMode==='playerVersusComputer') {
         computerTurn();
@@ -41,8 +43,9 @@ function computerTurn() {
     }
   }
   var random = freeTiles[Math.floor(Math.random()*freeTiles.length)]
-  if (freeTiles !== []) {
-    tiles[random].innerHTML = player;    
+  if (freeTiles.length > 0) {
+    tiles[random].innerHTML = player;
+    turn++;
   }
   checkWin(player);
   freeTiles = [];
@@ -55,6 +58,7 @@ function resetGame() {
     tiles[i].innerHTML = '';
   }
   turn = 0;
+  win = false;
 }
 
 function checkWin(player) {
@@ -79,7 +83,7 @@ function checkWin(player) {
         alert("tie");
         resetGame();
       }
-}
+    }
 
 
 
