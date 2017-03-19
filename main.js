@@ -59,6 +59,7 @@ function resetGame() {
 }
 
 function checkWin(player) {
+  setTimeout(function() {
   var counter = 0;
   for (var i = 0; i < winCom.length; i++) {
     for(var j = 0; j < 3; j++) {
@@ -81,10 +82,8 @@ function checkWin(player) {
         alert("tie");
         resetGame();
       }
-    }
-
-
-
+    },100)
+}
 
 // MODAL and buttons and STUFF
 var modal = document.getElementById('myModal');
