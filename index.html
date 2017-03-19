@@ -7,7 +7,13 @@
     <title>FCC Tic Tac Toe</title>
   </head>
   <body>
-    <button class="modal-btn" id="reset-btn">Restart</button>
+    <div class="menu">
+      <h2>Points</h2>
+      <h3 class="score" id="player1">X player score: <span id="scoreX">0</span></h3>
+      <h3 class="score" id="player2">O player score: <span id="scoreO">0</span></h3>
+      <hr />
+      <button class="modal-btn" id="reset-btn">Restart</button>
+    </div>
       <div class="board">
         <span></span>
         <span></span>
@@ -22,7 +28,6 @@
 
       <!-- The Modal -->
 <div id="myModal" class="modal">
-        <!-- Modal content -->
   <div class="modal-content">
     <div>
       <h1>Choose game type</h1>

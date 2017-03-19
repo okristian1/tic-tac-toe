@@ -39,7 +39,6 @@ function computerTurn() {
   for(var i = 0; i < len; ++i) {
     if(tiles[i].innerHTML === '') {
       freeTiles.push(i);
-      checkWin(player);
     }
   }
   var random = freeTiles[Math.floor(Math.random()*freeTiles.length)]
@@ -50,8 +49,6 @@ function computerTurn() {
   checkWin(player);
   freeTiles = [];
 }
-
-
 
 function resetGame() {
   for (var i = 0; i < len; i++) {
@@ -72,6 +69,7 @@ function checkWin(player) {
 //      console.log(counter);
     }
       if (counter > 2) {
+        document.querySelector('#score'+player).innerHTML++;
         alert(player + " wins");
         win = true;
         resetGame();
@@ -104,24 +102,19 @@ window.onload = function() {
     modal.style.display = "block";
 }
 
-// When the user clicks on <span> (x), close the modal
-
 startBtn.onclick = function() {
   if (gameMode !== '' && player !== '') {
     modal.style.display = "none";
     return false;
-  } else {
-    alert("chose");
   }
 }
-
 
 resetBtn.onclick = function() {
   modal.style.display = "block";
   resetGame();
+  document.querySelector('#scoreX').innerHTML=0;
+  document.querySelector('#scoreO').innerHTML=0;
 }
-
-
 
 var Xselect = document.querySelector('#Xselect');
 var Oselect = document.querySelector('#Oselect');
