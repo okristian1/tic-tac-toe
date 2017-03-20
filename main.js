@@ -4,6 +4,7 @@ var turn = 0;
 var win = false;
 var tiles = document.querySelectorAll('.board span');
 var len = tiles.length;
+var popup = document.querySelector('.popup');
 
 var winCom = [
   [0,1,2], //first row
@@ -26,6 +27,7 @@ for(var i = 0; i < len; ++i) {
       checkWin(player);
       console.log(turn);
       player = player === 'X' ? 'O' : 'X';
+      popup.innerHTML = player + ' Turn';
       if(gameMode==='playerVersusComputer') {
         computerTurn();
         player = player === 'X' ? 'O' : 'X';
@@ -51,15 +53,15 @@ function computerTurn() {
 }
 
 function resetGame() {
+  setTimeout(function() {
   for (var i = 0; i < len; i++) {
     tiles[i].innerHTML = '';
   }
   turn = 0;
   win = false;
+}, 1000);
 }
-
 function checkWin(player) {
-  setTimeout(function() {
   var counter = 0;
   for (var i = 0; i < winCom.length; i++) {
     for(var j = 0; j < 3; j++) {
@@ -71,7 +73,7 @@ function checkWin(player) {
     }
       if (counter > 2) {
         document.querySelector('#score'+player).innerHTML++;
-        alert(player + " wins");
+        popup.innerHTML = player + ' won';
         win = true;
         resetGame();
       }
@@ -79,10 +81,9 @@ function checkWin(player) {
     counter = 0;
   }
   if(turn > 8 && !win) {
-        alert("tie");
+        popup.innerHTML === 'It was a tie';
         resetGame();
       }
-    },100)
 }
 
 // MODAL and buttons and STUFF
@@ -137,6 +138,7 @@ Xselect.onclick = function() {
   player = 'X';
   Xselect.className = 'active-btn';
   Oselect.className = 'modal-btn';
+  popup.innerHTML = player + ' Turn';
 
 }
 
@@ -144,5 +146,7 @@ Oselect.onclick = function() {
   player = 'O';
   Oselect.className = 'active-btn';
   Xselect.className = 'modal-btn';
+  popup.innerHTML = player + ' Turn';
+
 
 }

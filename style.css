@@ -18,7 +18,7 @@
     width: 80%;
     height: 600px;
     padding-left: 20px;
-    padding-top: 10%;
+    padding-top: 20px;
     position: absolute;
     top:0;
     bottom: 0;
@@ -70,16 +70,17 @@ color: white;
 
 .modal-btn {
   /* The start game Button */
-  height: 40px;
-  width: 150px;
+  height: 10rem;
+  width: 20rem;
   border-radius: 3px;
   box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
   margin: 0 7px 11px 0;
   background-color: #f4dc42;
   line-height: 36px;
   user-select: none;
-  transition: all 0.2s ease;
+  transition: all 0.4s ease;
   border: none;
+  font-size: 2.7rem;
 }
 
 
@@ -90,8 +91,8 @@ color: white;
 }
 
 .active-btn {
-  height: 40px;
-  width: 150px;
+  height: 11rem;
+  width: 22rem;
   border-radius: 3px;
   box-shadow: 0px 3px #e04a80;
   margin: 0 7px 11px 0;
@@ -101,6 +102,7 @@ color: white;
   border: none;
   background-color: #8c2f51;
   color: #fff;
+  font-size: 3rem;
 }
 
 /* End of modal stuff */
@@ -108,8 +110,7 @@ color: white;
 .menu {
   width: 80%;
   height: 300px;
-
-  margin: 100px auto;
+  margin: 0 auto;
   padding: 2px 2px 2px 20px;
   color: white;
   background: #FFD180;
@@ -118,6 +119,14 @@ color: white;
   box-shadow: 0px 4px #212121, 0px 10px 15px rgba(0, 0, 0, 0.2);
   position: relative;
   text-align: center;
+}
+
+.popup {
+  height: 100px;
+  width: auto;
+  margin-top: 100px;
+  text-align: center;
+  font-size: 5rem;
 }
 
 .board {
@@ -131,7 +140,10 @@ color: white;
   box-shadow: 0px 4px #212121, 0px 10px 15px rgba(0, 0, 0, 0.2);
 }
 
-
+.header {
+  text-align: center;
+  margin-top: 40px;
+}
 html {
 	height: 100%;
 	background: white;
