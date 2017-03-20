@@ -5,6 +5,8 @@ var win = false;
 var tiles = document.querySelectorAll('.board span');
 var len = tiles.length;
 var popup = document.querySelector('.popup');
+var popupcontainer = document.querySelector('.popup-container');
+var winner = document.querySelector('.winner');
 
 var winCom = [
   [0,1,2], //first row
@@ -25,10 +27,13 @@ for(var i = 0; i < len; ++i) {
       this.innerHTML = player;
       turn++;
       checkWin(player);
-      console.log(turn);
       player = player === 'X' ? 'O' : 'X';
-      popup.innerHTML = player + ' Turn';
-      if(gameMode==='playerVersusComputer') {
+      popupcontainer.classList.add('pre-animation');
+      setTimeout(function(){
+          popupcontainer.classList.remove('pre-animation')
+          popup.innerHTML = player + ' Turn';
+      },200);
+        if(gameMode==='playerVersusComputer') {
         computerTurn();
         player = player === 'X' ? 'O' : 'X';
       }
@@ -54,26 +59,28 @@ function computerTurn() {
 
 function resetGame() {
   setTimeout(function() {
-  for (var i = 0; i < len; i++) {
-    tiles[i].innerHTML = '';
-  }
-  turn = 0;
-  win = false;
-}, 1000);
+    for (var i = 0; i < len; i++) {
+      tiles[i].innerHTML = '';
+    }
+    turn = 0;
+    win = false;
+    winner.innerHTML = '';
+    popupcontainer.classList.remove('hide-animation');
+  }, 2000);
 }
+
 function checkWin(player) {
   var counter = 0;
   for (var i = 0; i < winCom.length; i++) {
     for(var j = 0; j < 3; j++) {
-//      console.log(tiles[winCom[i][j]].innerHTML);
       if(tiles[winCom[i][j]].innerHTML === player) {
-//      console.log("matches player");
       counter++;
-//      console.log(counter);
     }
       if (counter > 2) {
+        popupcontainer.classList.add('hide-animation');
         document.querySelector('#score'+player).innerHTML++;
-        popup.innerHTML = player + ' won';
+        winner.innerHTML = player + ' won!!! YAY';
+        popup.innerHTML = '';
         win = true;
         resetGame();
       }
@@ -85,8 +92,7 @@ function checkWin(player) {
         resetGame();
       }
 }
-
-// MODAL and buttons and STUFF
+//modal and buttons
 var modal = document.getElementById('myModal');
 
 // Get the button that opens the modal
