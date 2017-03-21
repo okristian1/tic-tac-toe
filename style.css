@@ -44,12 +44,11 @@
 
 #reset-btn {
   margin-left: auto;
-  margin-top: 40px;
 }
 
 .start-button {
   /* The start game Button */
-  height: 40px;
+  height: 50px;
   width: 150px;
   border-radius: 3px;
   box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
@@ -122,22 +121,32 @@ color: white;
 }
 
 .popup-container {
-  height: 100px;
+  height: 50px;
   width: auto;
-  margin-top: 100px;
   text-align: center;
   font-size: 5rem;
   transition: all 0.8s ease;
+  position: absolute;
+  left: 45%;
 }
 
 .popup-container.pre-animation {
   opacity: 0;
-  max-height: 100px;
+  max-height: 50px;
 }
 
 .popup-container.hide-animation {
   opacity: 0;
-  max-height: 100px;
+  max-height: 50px;
+  transition: all 0s;
+}
+
+.win-container {
+  height: 50px;
+  width: auto;
+  text-align: center;
+  font-size: 5rem;
+  transition: all 0.8s ease;
 }
 
 

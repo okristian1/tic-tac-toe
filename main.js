@@ -19,7 +19,6 @@ var winCom = [
   [2,4,6], // right to left diagonal
 ]
 
-
 for(var i = 0; i < len; ++i) {
   tiles[i].onclick = function(e) {
     var tileVal = this.innerHTML;
@@ -34,14 +33,15 @@ for(var i = 0; i < len; ++i) {
           popup.innerHTML = player + ' Turn';
       },200);
         if(gameMode==='playerVersusComputer') {
-        computerTurn();
-        player = player === 'X' ? 'O' : 'X';
+          player = player === 'X' ? 'O' : 'X';
+          setTimeout(computerTurn, 2000);
       }
     }
   }
 }
 
 function computerTurn() {
+  player = player === 'X' ? 'O' : 'X';
   var freeTiles = [];
   for(var i = 0; i < len; ++i) {
     if(tiles[i].innerHTML === '') {
@@ -55,6 +55,7 @@ function computerTurn() {
   }
   checkWin(player);
   freeTiles = [];
+  player = player === 'X' ? 'O' : 'X';
 }
 
 function resetGame() {
