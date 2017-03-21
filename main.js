@@ -7,6 +7,7 @@ var len = tiles.length;
 var popup = document.querySelector('.popup');
 var popupcontainer = document.querySelector('.popup-container');
 var winner = document.querySelector('.winner');
+var board = document.querySelector('.board');
 
 var winCom = [
   [0,1,2], //first row
@@ -26,22 +27,34 @@ for(var i = 0; i < len; ++i) {
       this.innerHTML = player;
       turn++;
       checkWin(player);
-      player = player === 'X' ? 'O' : 'X';
-      popupcontainer.classList.add('pre-animation');
-      setTimeout(function(){
-          popupcontainer.classList.remove('pre-animation')
-          popup.innerHTML = player + ' Turn';
-      },200);
+      changePlayer();
+      changePlayerNotification();
         if(gameMode==='playerVersusComputer') {
-          player = player === 'X' ? 'O' : 'X';
-          setTimeout(computerTurn, 2000);
+          changePlayer();
+          computerTurn();
       }
     }
   }
 }
 
-function computerTurn() {
+function changePlayerNotification() {
+  popupcontainer.classList.add('pre-animation');
+  setTimeout(function(){
+      popupcontainer.classList.remove('pre-animation')
+      popup.innerHTML = player + ' Turn';
+  },200);
+}
+
+
+function changePlayer() {
   player = player === 'X' ? 'O' : 'X';
+}
+
+
+function computerTurn() {
+  board.classList.add('disable');
+  setTimeout(function() {
+  changePlayer();
   var freeTiles = [];
   for(var i = 0; i < len; ++i) {
     if(tiles[i].innerHTML === '') {
@@ -55,7 +68,9 @@ function computerTurn() {
   }
   checkWin(player);
   freeTiles = [];
-  player = player === 'X' ? 'O' : 'X';
+  changePlayer();
+  board.classList.remove('disable');
+}, 2000);
 }
 
 function resetGame() {
