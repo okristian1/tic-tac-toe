@@ -27,12 +27,16 @@ for(var i = 0; i < len; ++i) {
       this.innerHTML = player;
       turn++;
       checkWin(player);
-      changePlayer();
-      changePlayerNotification();
         if(gameMode==='playerVersusComputer') {
+          board.classList.add('disable');
+          setTimeout(function(){
           changePlayer();
           computerTurn();
+        },2000);
+          changePlayerNotification();
       }
+      changePlayer();
+      changePlayerNotification();
     }
   }
 }
@@ -69,6 +73,7 @@ function computerTurn() {
   checkWin(player);
   freeTiles = [];
   changePlayer();
+  changePlayerNotification();
   board.classList.remove('disable');
 }, 2000);
 }
@@ -82,6 +87,7 @@ function resetGame() {
     win = false;
     winner.innerHTML = '';
     popupcontainer.classList.remove('hide-animation');
+    board.classList.remove('disable');
   }, 2000);
 }
 
@@ -97,6 +103,7 @@ function checkWin(player) {
         document.querySelector('#score'+player).innerHTML++;
         winner.innerHTML = player + ' won!!! YAY';
         popup.innerHTML = '';
+        board.classList.add('disable');
         win = true;
         resetGame();
       }
