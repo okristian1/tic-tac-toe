@@ -69,13 +69,11 @@ function computerTurn() {
       freeTiles.push(i);
     }
   }
-
   for (var i = 0; i < freeTiles.length; i++) {
     if(optimalTiles.indexOf(freeTiles[i])> 0) {
       freeOptimalTiles.push(freeTiles[i]);
     }
   }
-
   console.log(freeOptimalTiles);
   var random = freeTiles[Math.floor(Math.random()*freeTiles.length)]
   var randomOptimal = freeOptimalTiles[Math.floor(Math.random()*freeOptimalTiles.length)]
