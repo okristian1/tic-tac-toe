@@ -18,7 +18,8 @@ var winCom = [
   [2,5,8], // third column
   [0,4,8], // left to right diagonal
   [2,4,6], // right to left diagonal
-]
+];
+
 
 for(var i = 0; i < len; ++i) {
   tiles[i].onclick = function(e) {
@@ -26,13 +27,14 @@ for(var i = 0; i < len; ++i) {
     if(tileVal === '') {
       this.innerHTML = player;
       turn++;
+      console.log(turn);
       checkWin(player);
         if(gameMode==='playerVersusComputer') {
           board.classList.add('disable');
           setTimeout(function(){
           changePlayer();
           computerTurn();
-        },2000);
+        },1000);
           changePlayerNotification();
       }
       changePlayer();
@@ -56,26 +58,43 @@ function changePlayer() {
 
 
 function computerTurn() {
+  var optimalTiles = [0,2,4,6,8];
+  var freeOptimalTiles = [];
+  var freeTiles = [];
   board.classList.add('disable');
   setTimeout(function() {
   changePlayer();
-  var freeTiles = [];
   for(var i = 0; i < len; ++i) {
     if(tiles[i].innerHTML === '') {
       freeTiles.push(i);
     }
   }
+
+  for (var i = 0; i < freeTiles.length; i++) {
+    if(optimalTiles.indexOf(freeTiles[i])> 0) {
+      freeOptimalTiles.push(freeTiles[i]);
+    }
+  }
+
+  console.log(freeOptimalTiles);
   var random = freeTiles[Math.floor(Math.random()*freeTiles.length)]
-  if (freeTiles.length > 0) {
+  var randomOptimal = freeOptimalTiles[Math.floor(Math.random()*freeOptimalTiles.length)]
+
+  if (freeOptimalTiles.length > 0) {
+    tiles[randomOptimal].innerHTML = player;
+    turn++;
+  }
+  else if (freeTiles.length > 0) {
     tiles[random].innerHTML = player;
     turn++;
   }
   checkWin(player);
   freeTiles = [];
+  freeOptimalTiles = [];
   changePlayer();
   changePlayerNotification();
   board.classList.remove('disable');
-}, 2000);
+}, 1000);
 }
 
 function resetGame() {
@@ -88,7 +107,8 @@ function resetGame() {
     winner.innerHTML = '';
     popupcontainer.classList.remove('hide-animation');
     board.classList.remove('disable');
-  }, 2000);
+    popup.innerHTML = player + ' turn';
+  }, 1000);
 }
 
 function checkWin(player) {
@@ -110,9 +130,12 @@ function checkWin(player) {
     }
     counter = 0;
   }
-  if(turn > 8 && !win) {
-        popup.innerHTML === 'It was a tie';
-        resetGame();
+  if(turn === 9 && win === false) {
+    popupcontainer.classList.add('hide-animation');
+    winner.innerHTML = 'Tie';
+    setTimeout(function(){
+      resetGame();
+      },2000);
       }
 }
 //modal and buttons
