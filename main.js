@@ -27,7 +27,6 @@ for(var i = 0; i < len; ++i) {
     if(tileVal === '') {
       this.innerHTML = player;
       turn++;
-      console.log(turn);
       checkWin(player);
         if(gameMode==='playerVersusComputer') {
           board.classList.add('disable');
@@ -51,7 +50,6 @@ function changePlayerNotification() {
   },200);
 }
 
-
 function changePlayer() {
   player = player === 'X' ? 'O' : 'X';
 }
@@ -74,7 +72,6 @@ function computerTurn() {
       freeOptimalTiles.push(freeTiles[i]);
     }
   }
-  console.log(freeOptimalTiles);
   var random = freeTiles[Math.floor(Math.random()*freeTiles.length)]
   var randomOptimal = freeOptimalTiles[Math.floor(Math.random()*freeOptimalTiles.length)]
 
