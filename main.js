@@ -59,14 +59,17 @@ function computerTurn() {
   var optimalTiles = [0,2,4,6,8];
   var freeOptimalTiles = [];
   var freeTiles = [];
+  var moved = false;
   board.classList.add('disable');
   setTimeout(function() {
   changePlayer();
   for(var i = 0; i < len; ++i) {
+    console.log(tiles[i].innerHTML);
     if(tiles[i].innerHTML === '') {
       freeTiles.push(i);
     }
   }
+
   for (var i = 0; i < freeTiles.length; i++) {
     if(optimalTiles.indexOf(freeTiles[i])> 0) {
       freeOptimalTiles.push(freeTiles[i]);
@@ -75,22 +78,49 @@ function computerTurn() {
   var random = freeTiles[Math.floor(Math.random()*freeTiles.length)]
   var randomOptimal = freeOptimalTiles[Math.floor(Math.random()*freeOptimalTiles.length)]
 
+  for (var i = 0, j = 0; i < winCom.length; i++) {
+      if(tiles[winCom[i][j]].innerHTML === player && tiles[winCom[i][j+1]].innerHTML === player && tiles[winCom[i][j+2]].innerHTML === '') {
+        tiles[winCom[i][j+2]].innerHTML = player;
+        console.log("derp1");
+        moved = true;
+        break;
+      }
+      else if (tiles[winCom[i][j]].innerHTML === '' && tiles[winCom[i][j+1]].innerHTML === player && tiles[winCom[i][j+2]].innerHTML === player) {
+        tiles[winCom[i][j]].innerHTML = player;
+        moved = true;
+        console.log("derp2");
+        break;
+      }
+      else if (tiles[winCom[i][j]].innerHTML === player && tiles[winCom[i][j+1]].innerHTML === '' && tiles[winCom[i][j+2]].innerHTML === player) {
+        tiles[winCom[i][j+1]].innerHTML = player;
+        moved = true;
+        console.log("derp3");
+        break;
+    }
+  }
+  if (!moved) {
   if (freeOptimalTiles.length > 0) {
-    tiles[randomOptimal].innerHTML = player;
-    turn++;
-  }
+   tiles[randomOptimal].innerHTML = player;
+   }
   else if (freeTiles.length > 0) {
-    tiles[random].innerHTML = player;
-    turn++;
-  }
+   tiles[random].innerHTML = player;
+ }
+ }
+ turnDone();
+  board.classList.remove('disable');
+}, 1000);
+}
+
+function turnDone() {
   checkWin(player);
+  turn++;
   freeTiles = [];
   freeOptimalTiles = [];
   changePlayer();
   changePlayerNotification();
   board.classList.remove('disable');
-}, 1000);
 }
+
 
 function resetGame() {
   setTimeout(function() {
