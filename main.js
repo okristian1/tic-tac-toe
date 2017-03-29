@@ -54,7 +54,6 @@ function changePlayerNotification() {
 function changePlayer() {
   player = player === 'X' ? 'O' : 'X';
   computer = player === 'X' ? 'O' : 'X';
-  console.log(computer);
 }
 
 
@@ -67,7 +66,6 @@ function computerTurn() {
   setTimeout(function() {
   changePlayer();
   for(var i = 0; i < len; ++i) {
-    console.log(tiles[i].innerHTML);
     if(tiles[i].innerHTML === '') {
       freeTiles.push(i);
     }
@@ -135,7 +133,6 @@ function computerTurn() {
 
 function turnDone() {
   checkWin(player);
-  console.log(turn);
   turn++;
   freeTiles = [];
   freeOptimalTiles = [];
