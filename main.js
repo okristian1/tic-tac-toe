@@ -84,50 +84,58 @@ function computerTurn() {
   for (var i = 0, j = 0; i < winCom.length; i++) {
     if(tiles[winCom[i][j]].innerHTML === computer && tiles[winCom[i][j+1]].innerHTML === computer && tiles[winCom[i][j+2]].innerHTML === '') {
       tiles[winCom[i][j+2]].innerHTML = player;
+      turnDone();
       moved = true;
       break;
     }
     else if (tiles[winCom[i][j]].innerHTML === '' && tiles[winCom[i][j+1]].innerHTML === computer && tiles[winCom[i][j+2]].innerHTML === computer) {
       tiles[winCom[i][j]].innerHTML = player;
+      turnDone();
       moved = true;
       break;
     }
     else if (tiles[winCom[i][j]].innerHTML === computer && tiles[winCom[i][j+1]].innerHTML === '' && tiles[winCom[i][j+2]].innerHTML === computer) {
       tiles[winCom[i][j+1]].innerHTML = player;
+      turnDone();
       moved = true;
       break;
   }
       else if(tiles[winCom[i][j]].innerHTML === player && tiles[winCom[i][j+1]].innerHTML === player && tiles[winCom[i][j+2]].innerHTML === '') {
         tiles[winCom[i][j+2]].innerHTML = player;
+        turnDone();
         moved = true;
         break;
       }
       else if (tiles[winCom[i][j]].innerHTML === '' && tiles[winCom[i][j+1]].innerHTML === player && tiles[winCom[i][j+2]].innerHTML === player) {
         tiles[winCom[i][j]].innerHTML = player;
+        turnDone();
         moved = true;
         break;
       }
       else if (tiles[winCom[i][j]].innerHTML === player && tiles[winCom[i][j+1]].innerHTML === '' && tiles[winCom[i][j+2]].innerHTML === player) {
         tiles[winCom[i][j+1]].innerHTML = player;
         moved = true;
+        turnDone();
         break;
     }
   }
   if (!moved) {
   if (freeOptimalTiles.length > 0) {
    tiles[randomOptimal].innerHTML = player;
+   turnDone();
    }
   else if (freeTiles.length > 0) {
    tiles[random].innerHTML = player;
+   turnDone();
  }
- }
- turnDone();
+}
   board.classList.remove('disable');
 }, 1000);
 }
 
 function turnDone() {
   checkWin(player);
+  console.log(turn);
   turn++;
   freeTiles = [];
   freeOptimalTiles = [];
