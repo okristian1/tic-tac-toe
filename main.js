@@ -1,4 +1,5 @@
 var player = '';
+var computer = '';
 var gameMode = ''
 var turn = 0;
 var win = false;
@@ -52,6 +53,8 @@ function changePlayerNotification() {
 
 function changePlayer() {
   player = player === 'X' ? 'O' : 'X';
+  computer = player === 'X' ? 'O' : 'X';
+  console.log(computer);
 }
 
 
@@ -79,22 +82,34 @@ function computerTurn() {
   var randomOptimal = freeOptimalTiles[Math.floor(Math.random()*freeOptimalTiles.length)]
 
   for (var i = 0, j = 0; i < winCom.length; i++) {
-      if(tiles[winCom[i][j]].innerHTML === player && tiles[winCom[i][j+1]].innerHTML === player && tiles[winCom[i][j+2]].innerHTML === '') {
+    if(tiles[winCom[i][j]].innerHTML === computer && tiles[winCom[i][j+1]].innerHTML === computer && tiles[winCom[i][j+2]].innerHTML === '') {
+      tiles[winCom[i][j+2]].innerHTML = player;
+      moved = true;
+      break;
+    }
+    else if (tiles[winCom[i][j]].innerHTML === '' && tiles[winCom[i][j+1]].innerHTML === computer && tiles[winCom[i][j+2]].innerHTML === computer) {
+      tiles[winCom[i][j]].innerHTML = player;
+      moved = true;
+      break;
+    }
+    else if (tiles[winCom[i][j]].innerHTML === computer && tiles[winCom[i][j+1]].innerHTML === '' && tiles[winCom[i][j+2]].innerHTML === computer) {
+      tiles[winCom[i][j+1]].innerHTML = player;
+      moved = true;
+      break;
+  }
+      else if(tiles[winCom[i][j]].innerHTML === player && tiles[winCom[i][j+1]].innerHTML === player && tiles[winCom[i][j+2]].innerHTML === '') {
         tiles[winCom[i][j+2]].innerHTML = player;
-        console.log("derp1");
         moved = true;
         break;
       }
       else if (tiles[winCom[i][j]].innerHTML === '' && tiles[winCom[i][j+1]].innerHTML === player && tiles[winCom[i][j+2]].innerHTML === player) {
         tiles[winCom[i][j]].innerHTML = player;
         moved = true;
-        console.log("derp2");
         break;
       }
       else if (tiles[winCom[i][j]].innerHTML === player && tiles[winCom[i][j+1]].innerHTML === '' && tiles[winCom[i][j+2]].innerHTML === player) {
         tiles[winCom[i][j+1]].innerHTML = player;
         moved = true;
-        console.log("derp3");
         break;
     }
   }
