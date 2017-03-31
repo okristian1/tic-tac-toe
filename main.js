@@ -128,7 +128,6 @@ function computerTurn() {
  }
 }
   checkWin();
-  board.classList.remove('disable');
 }, 1000);
 }
 
@@ -139,7 +138,6 @@ function turnDone() {
   freeOptimalTiles = [];
   changePlayer();
   changePlayerNotification();
-  board.classList.remove('disable');
 }
 
 function checkWin(player) {
@@ -155,6 +153,7 @@ function checkWin(player) {
         winner.innerHTML = player + ' won!!! YAY';
         popup.innerHTML = '';
         board.classList.add('disable');
+        console.log("board disabled");
         win = true;
         resetGame();
       }
@@ -164,9 +163,10 @@ function checkWin(player) {
   if(turn === 9 && win === false) {
     popupcontainer.classList.add('hide-animation');
     winner.innerHTML = 'Tie';
-    setTimeout(function(){
       resetGame();
-      },2000);
+      }
+      if (!win) {
+        board.classList.remove('disable');
       }
 }
 
@@ -181,7 +181,7 @@ function resetGame() {
     popupcontainer.classList.remove('hide-animation');
     board.classList.remove('disable');
     popup.innerHTML = player + ' turn';
-  }, 1000);
+  }, 2000);
 }
 
 
