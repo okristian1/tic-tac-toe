@@ -142,21 +142,6 @@ function turnDone() {
   board.classList.remove('disable');
 }
 
-
-function resetGame() {
-  setTimeout(function() {
-    for (var i = 0; i < len; i++) {
-      tiles[i].innerHTML = '';
-    }
-    turn = 0;
-    win = false;
-    winner.innerHTML = '';
-    popupcontainer.classList.remove('hide-animation');
-    board.classList.remove('disable');
-    popup.innerHTML = player + ' turn';
-  }, 1000);
-}
-
 function checkWin(player) {
   var counter = 0;
   for (var i = 0; i < winCom.length; i++) {
@@ -184,6 +169,23 @@ function checkWin(player) {
       },2000);
       }
 }
+
+function resetGame() {
+  setTimeout(function() {
+    for (var i = 0; i < len; i++) {
+      tiles[i].innerHTML = '';
+    }
+    turn = 0;
+    win = false;
+    winner.innerHTML = '';
+    popupcontainer.classList.remove('hide-animation');
+    board.classList.remove('disable');
+    popup.innerHTML = player + ' turn';
+  }, 1000);
+}
+
+
+
 //modal and buttons
 var modal = document.getElementById('myModal');
 
